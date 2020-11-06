@@ -1,4 +1,5 @@
-# SEA_BATTLE
+# Sea_Battle
+
 Arduboy Game
 
 Based on the game BattleShips. This game has a simple AI and music, but is smart enough to be challenging.
