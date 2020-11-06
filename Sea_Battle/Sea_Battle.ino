@@ -80,14 +80,18 @@ int enemyShips[3][4] = { {0, 0, 0, 2}, {0, 0, 0, 3}, {0, 0, 0, 4} };
 int currentShipPlacement = 0;
 
 // Sounds
-uint16_t introSong[] = {  NOTE_E3,500, NOTE_REST,500, NOTE_D3,500, NOTE_C3,1000,
-                          NOTE_D3,500, NOTE_E3,1000, NOTE_REST,500, NOTE_E3,500, 
-                          NOTE_REST,500, NOTE_D3,500, NOTE_C3,1000, NOTE_D3,500,
-                          NOTE_B3,500, TONES_END }; // Intro Sound
+uint16_t introSong[] = {  NOTE_CS3,500, NOTE_REST,500, NOTE_DS3,500, NOTE_AS3,1000,
+                          NOTE_DS3,500, NOTE_B3,1000, NOTE_REST,500, NOTE_CS3,500, 
+                          NOTE_REST,500, NOTE_DS3,500, NOTE_CS3,1000, NOTE_DS3,500,
+                          NOTE_A3,500, NOTE_REST,1000, TONES_END }; // Intro Sound
 
 // Enemy AI
 // checkerboard type - to make the AI not seem less mechanical
 boolean boardIsEven;
+
+// First Startup
+unsigned long clockCounter = 0;
+
 
 // Setup Everything
 void setup() {
@@ -142,15 +146,29 @@ void loop() {
     gamePhaseTwoRender();
   }
   else if (gameState == WIN) {
-    gameWinRender();
-    if (getUserInput() == 5) {
-      gameState = STARTUP;
+    // Render the older screen for a few
+    if (millis() - clockCounter < 4000) {
+      gamePhaseTwoRender();
     }
+    else {
+      gameWinRender();
+      if (getUserInput() == 5) {
+        gameState = STARTUP;
+      }
+    }
+    
+    
   }
   else if (gameState == LOSE) {
-    gameLoseRender();
-    if (getUserInput() == 5) {
-      gameState = STARTUP;
+    // Render the older screen for a few
+    if (millis() - clockCounter < 4000) {
+      gamePhaseTwoRender();
+    }
+    else {
+      gameLoseRender();
+      if (getUserInput() == 5) {
+        gameState = STARTUP;
+      }
     }
   }
   else {

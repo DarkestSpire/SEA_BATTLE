@@ -1,5 +1,4 @@
 // First Startup
-unsigned long pressACounter = 0;
 
 void startupTick() {
   // Wait for startup
@@ -56,15 +55,15 @@ void startupRender() {
   digitalWrite(GREEN_LED, HIGH);
   digitalWrite(BLUE_LED, HIGH);
     
-  if (millis() - pressACounter < 400) {
+  if (millis() - clockCounter < 400) {
     
   }
-  else if (millis() - pressACounter < 800) {
+  else if (millis() - clockCounter < 800) {
     arduboy.drawBitmap(9,23,PRESS_A,32,8,1);
     digitalWrite(BLUE_LED, LOW);
   }
   else {
-    pressACounter = millis();
+    clockCounter = millis();
   }
   
   arduboy.display();

@@ -29,6 +29,7 @@ void gamePhaseTwoTick() {
         gamePhaseStatus = PLAYER_SINK;
         if (checkForAllSunk(enemyBoard)) {
           gameState = WIN;
+          clockCounter = millis(); // Update clock to hold the screen
         }
       }
       // Check if it a ship is MISS
@@ -47,26 +48,22 @@ void gamePhaseTwoTick() {
 
   // Player Status
   else if (gamePhaseStatus == PLAYER_MISS){ 
-    if (getUserInput() == 5) {
-      gamePhaseStatus = ENEMY_TURN_STATE;
-    }
+    delay(500);
+    gamePhaseStatus = ENEMY_TURN_STATE;
   }
-  else if (gamePhaseStatus == PLAYER_HIT | gamePhaseStatus == PLAYER_SINK){ 
-    if (getUserInput() == 5) {
-      gamePhaseStatus = PLAYER_TURN_STATE;
-    }
+  else if (gamePhaseStatus == PLAYER_HIT | gamePhaseStatus == PLAYER_SINK) { 
+    delay(500);
+    gamePhaseStatus = PLAYER_TURN_STATE;
   }
   // Enemy Status
   else if (gamePhaseStatus == ENEMY_MISS){ 
-    if (getUserInput() == 5) {
-      gamePhaseStatus = PLAYER_TURN_STATE;
-    }
+    delay(500);
+    gamePhaseStatus = PLAYER_TURN_STATE;
   }
   // Enemy Status
   else if (gamePhaseStatus == ENEMY_HIT | gamePhaseStatus == ENEMY_SINK){ 
-    if (getUserInput() == 5) {
-      gamePhaseStatus = ENEMY_TURN_STATE;
-    }
+    delay(500);
+    gamePhaseStatus = ENEMY_TURN_STATE;
   }
 
 } // gamePhaseTwoTick()

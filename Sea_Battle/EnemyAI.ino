@@ -148,7 +148,8 @@ void enemyAI() {
 
     // End Game
     if (checkForAllSunk(playerBoard)) {
-          gameState = LOSE;
+      clockCounter = millis(); // Update clock to hold the screen
+      gameState = LOSE;
     }
     
   }
